@@ -154,11 +154,11 @@ export default function SignUpForm() {
                   <p className="inline-block font-normal text-gray-500 dark:text-gray-400">
                     By creating an account means you agree to the{" "}
                     <span className="text-gray-800 dark:text-white/90">
-                      Terms and Conditions,
+                     <a href="https://stayhomefunds.com/tnc.html">Terms and Conditions,</a>{" "}  
                     </span>{" "}
                     and our{" "}
                     <span className="text-gray-800 dark:text-white">
-                      Privacy Policy
+                     <a href="https://stayhomefunds.com/privacy.html">Privacy Policy</a>
                     </span>
                   </p>
                 </div>

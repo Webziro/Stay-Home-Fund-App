@@ -1,12 +1,13 @@
 import { useCallback, useState } from "react";
 import { BoxIconLine, GroupIcon } from "../../icons";
 import { useModal } from "../../hooks/useModal";
-import TransactionDetails from "./transactionDetails/sendToSHF";
+import TransactionDetails from "./transactionDetails/SendToSHF";
 import SendToOtherBank from "./transactionDetails/SendToOtherBank";
+import InvestForm from "../form/invest/InvestForm";
 
 export default function Transactions() {
   const { isOpen, openModal, closeModal } = useModal(false);
-  const [selectedFlow, setSelectedFlow] = useState<null | "shf" | "other">(null);
+  const [selectedFlow, setSelectedFlow] = useState<null | "shf" | "other" | "invest">(null);
   const onBackdropClick = useCallback(
     (event: React.MouseEvent<HTMLDivElement>) => {
       if (event.target === event.currentTarget) closeModal();
@@ -19,26 +20,32 @@ export default function Transactions() {
   };
   const openShf = () => setSelectedFlow("shf");
   const openOther = () => setSelectedFlow("other");
+  const openInvest = () => setSelectedFlow("invest");
   return (
     <div className="grid grid-cols-3 gap-2 sm:gap-3">
       {/* <!-- Item: Send Money --> */}
       <button
         type="button"
         onClick={handleOpen}
-        className="text-left rounded-xl border border-gray-200 bg-white p-3 dark:border-gray-800 dark:bg-white/[0.03] hover:border-brand-200 dark:hover:border-brand-800 focus:outline-none focus:ring-2 focus:ring-brand-300"
-      >
+        className="text-left rounded-xl border border-gray-200 bg-white p-3 dark:border-gray-800 dark:bg-white/[0.03] hover:border-brand-200 dark:hover:border-brand-800 focus:outline-none focus:ring-2 focus:ring-brand-300">
         <div className="flex items-center gap-2">
           <div className="flex items-center justify-center w-8 h-8 bg-gray-100 rounded-lg dark:bg-gray-800">
             <GroupIcon className="text-gray-800 size-4 dark:text-white/90" />
           </div>
           <span className="text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300">
             Send Money
-          </span>
+          </span> 
         </div>
       </button>
 
       {/* <!-- Item: Invest Money --> */}
-      <div className="rounded-xl border border-gray-200 bg-white p-3 dark:border-gray-800 dark:bg-white/[0.03]">
+      <button
+        type="button"
+        onClick={() => {
+          handleOpen();
+          openInvest();
+        }}
+        className="text-left rounded-xl border border-gray-200 bg-white p-3 dark:border-gray-800 dark:bg-white/[0.03] hover:border-brand-200 dark:hover:border-brand-800 focus:outline-none focus:ring-2 focus:ring-brand-300">
         <div className="flex items-center gap-2">
           <div className="flex items-center justify-center w-8 h-8 bg-gray-100 rounded-lg dark:bg-gray-800">
             <BoxIconLine className="text-gray-800 size-4 dark:text-white/90" />
@@ -47,7 +54,7 @@ export default function Transactions() {
             Invest Money
           </span>
         </div>
-      </div>
+      </button>
 
       {/* <!-- Item: Save Money --> */}
       <div className="rounded-xl border border-gray-200 bg-white p-3 dark:border-gray-800 dark:bg-white/[0.03]">
@@ -60,17 +67,18 @@ export default function Transactions() {
           </span>
         </div>
       </div>
+
+      
       {/* Modal */}
       {isOpen ? (
         <div
           className="fixed inset-0 z-[100] flex items-center justify-center bg-black/40 dark:bg-black/60 px-4"
           onMouseDown={onBackdropClick}
           role="dialog"
-          aria-modal="true"
-        >
+          aria-modal="true">
           <div className="w-full max-w-md rounded-2xl border border-gray-200 bg-white p-4 shadow-xl dark:border-gray-800 dark:bg-gray-900 md:p-5">
             <div className="flex items-start justify-between">
-              <h2 className="text-base font-semibold text-gray-900 dark:text-white">Send Money</h2>
+              <h2 className="text-base font-semibold text-gray-900 dark:text-white">{selectedFlow === "invest" ? "Invest Money" : "Send Money"}</h2>
               <button
                 type="button"
                 onClick={closeModal}
@@ -119,6 +127,12 @@ export default function Transactions() {
             {selectedFlow === "other" ? (
               <div className="mt-4">
                 <SendToOtherBank />
+              </div>
+            ) : null}
+
+            {selectedFlow === "invest" ? (
+              <div className="mt-4">
+                <InvestForm onClose={closeModal} />
               </div>
             ) : null}
           </div>

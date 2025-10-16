@@ -17,8 +17,7 @@ export default function EcommerceMetrics() {
       <button
         type="button"
         onClick={openModal}
-        className="text-left rounded-xl border border-gray-200 bg-white p-3 dark:border-gray-800 dark:bg-white/\[0.03\] hover:border-brand-200 dark:hover:border-brand-800 focus:outline-none focus:ring-2 focus:ring-brand-300"
-      >
+        className="text-left rounded-xl border border-gray-200 bg-white p-3 dark:border-gray-800 dark:bg-white/\[0.03\] hover:border-brand-200 dark:hover:border-brand-800 focus:outline-none focus:ring-2 focus:ring-brand-300">
         <div className="flex items-center gap-2">
           <div className="flex items-center justify-center w-8 h-8 bg-gray-100 rounded-lg dark:bg-gray-800">
             <GroupIcon className="text-gray-800 size-4 dark:text-white/90" />
@@ -30,16 +29,19 @@ export default function EcommerceMetrics() {
       </button>
 
       {/* <!-- Item: Invest Money --> */}
-      <div className="rounded-xl border border-gray-200 bg-white p-3 dark:border-gray-800 dark:bg-white/\[0.03\]">
-        <div className="flex items-center gap-2">
-          <div className="flex items-center justify-center w-8 h-8 bg-gray-100 rounded-lg dark:bg-gray-800">
-            <BoxIconLine className="text-gray-800 size-4 dark:text-white/90" />
+      <button type="button" onClick={openModal}
+       className="text-left rounded-xl border border-gray-200 bg-white p-3 dark:border-gray-800 dark:bg-white/\[0.03\] hover:border-brand-200 dark:hover:border-brand-800 focus:outline-none focus:ring-2 focus:ring-brand-300">
+        <div className="rounded-xl border border-gray-200 bg-white p-3 dark:border-gray-800 dark:bg-white/\[0.03\]">
+          <div className="flex items-center gap-2">
+            <div className="flex items-center justify-center w-8 h-8 bg-gray-100 rounded-lg dark:bg-gray-800">
+              <BoxIconLine className="text-gray-800 size-4 dark:text-white/90" />
+            </div>
+            <span className="text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300">
+              Invest Money
+            </span>
           </div>
-          <span className="text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300">
-            Invest Money
-          </span>
         </div>
-      </div>
+      </button>
 
       {/* <!-- Item: Save Money --> */}
       <div className="rounded-xl border border-gray-200 bg-white p-3 dark:border-gray-800 dark:bg-white/\[0.03\]">
