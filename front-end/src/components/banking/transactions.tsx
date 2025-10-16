@@ -28,7 +28,7 @@ export default function EcommerceMetrics() {
         </div>
       </button>
 
-      {/* <!-- Item: Invest Money --> */}
+      {/* <!-- Item: Invest Money using modal invest form --> */}
       <button type="button" onClick={openModal}
        className="text-left rounded-xl border border-gray-200 bg-white p-3 dark:border-gray-800 dark:bg-white/\[0.03\] hover:border-brand-200 dark:hover:border-brand-800 focus:outline-none focus:ring-2 focus:ring-brand-300">
         <div className="rounded-xl border border-gray-200 bg-white p-3 dark:border-gray-800 dark:bg-white/\[0.03\]">
@@ -54,7 +54,9 @@ export default function EcommerceMetrics() {
           </span>
         </div>
       </div>
-      {/* Modal */}
+
+
+      {/* Modal for send money */}
       {isOpen ? (
         <div
           className="fixed inset-0 z-[100] flex items-center justify-center bg-black/40 dark:bg-black/60 px-4"

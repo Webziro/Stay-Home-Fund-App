@@ -14,7 +14,7 @@ export default function InvestForm({ onClose }: InvestFormProps) {
   const [duration, setDuration] = useState("");
 
   const plans = [
-      { value: "Fixed", label: "Fixed" },
+    { value: "Fixed", label: "Fixed" },
     { value: "Semi-Emergency", label: "Semi-Emergency" },
     { value: "Philanthropy", label: "Philanthropy" },
   ];
@@ -89,5 +89,4 @@ export default function InvestForm({ onClose }: InvestFormProps) {
     </form>
   );
 }
-
 
