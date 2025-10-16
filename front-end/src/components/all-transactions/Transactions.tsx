@@ -68,7 +68,7 @@ export default function Transactions() {
         </div>
       </div>
 
-      
+
       {/* Modal */}
       {isOpen ? (
         <div
@@ -78,13 +78,13 @@ export default function Transactions() {
           aria-modal="true">
           <div className="w-full max-w-md rounded-2xl border border-gray-200 bg-white p-4 shadow-xl dark:border-gray-800 dark:bg-gray-900 md:p-5">
             <div className="flex items-start justify-between">
-              <h2 className="text-base font-semibold text-gray-900 dark:text-white">{selectedFlow === "invest" ? "Invest Money" : "Send Money"}</h2>
+              <h2 className="text-base font-semibold text-gray-900 dark:text-white">
+                {selectedFlow === "invest" ? "Invest Money" : "Send Money"}</h2>
               <button
                 type="button"
                 onClick={closeModal}
                 className="ml-3 inline-flex size-8 items-center justify-center rounded-md text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-brand-300 dark:text-gray-400 dark:hover:bg-white/10"
-                aria-label="Close"
-              >
+                aria-label="Close">
                 ×
               </button>
             </div>
