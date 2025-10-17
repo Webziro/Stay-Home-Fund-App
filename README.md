@@ -1,4 +1,3 @@
-# SHF - Stay Home Funds Dashboard 🏠
 
 ## Overview
 The Stay Home Funds Dashboard is a modern, responsive financial management application meticulously crafted with **React**, **TypeScript**, and **Tailwind CSS**. It provides users with an intuitive and comprehensive platform to manage their finances, offering capabilities for transaction tracking, investment opportunities, personalized savings management, and detailed user profile customization.
