@@ -11,7 +11,7 @@ The Stay Home Funds Dashboard is a modern, responsive financial management appli
 -   **Savings Goals**: 💰 Utilize quick save options and manage withdrawals to foster disciplined financial habits.
 -   **Dynamic UI Components**: ✨ A rich collection of reusable and accessible UI elements, including alerts, avatars, badges, buttons, and various media displays.
 -   **Comprehensive Form Elements**: 📝 Fully functional form inputs, select dropdowns, checkboxes, radio buttons, and integrated file upload zones.
--   **Theme Switching**: 🌗 Personalize your experience by effortlessly toggling between light and dark modes.
+-   **Theme Switching**: 🌗 Personalize your experience by effortlessly toggling between light and dark modes are you wish.
 
 ## Getting Started
 To set up the Stay Home Funds Dashboard locally for development or demonstration, follow these straightforward steps.
