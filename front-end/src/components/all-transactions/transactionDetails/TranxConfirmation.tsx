@@ -42,7 +42,7 @@ export default function TranxConfirmation() {
             <span className="font-medium text-gray-900 dark:text-white">1203451290</span>
           </div>
           <div className="flex justify-between">
-            <span className="text-gray-600 dark:text-gray-400">Verified Name:</span>
+            <span className="text-gray-600 dark:text-gray-400">Customer's Name:</span>
             <span className="font-medium text-gray-900 dark:text-white">Stanley Amaziro</span>
           </div>
           <div className="flex justify-between">
