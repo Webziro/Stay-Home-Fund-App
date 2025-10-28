@@ -10,10 +10,12 @@ import SaveMoney from "./pages/OtherPage/SaveMoney";
 import AppLayout from "./layout/AppLayout";
 import { ScrollToTop } from "./components/common/ScrollToTop";
 import Home from "./pages/Dashboard/Home";
+import { Provider } from "react-redux";
+import store from "./store";
 
 export default function App() {
   return (
-    <>
+    <Provider store={store}>
       <Router>
         <ScrollToTop />
         <Routes>
@@ -43,6 +45,6 @@ export default function App() {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>
-    </>
+    </Provider>
   );
 }
