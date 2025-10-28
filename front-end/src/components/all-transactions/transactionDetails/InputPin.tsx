@@ -1,5 +1,7 @@
 import { useCallback, useState } from "react";
 import { useModal } from "../../../hooks/useModal";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../store";
 
 interface InputPinProps {
   isOpen: boolean;
