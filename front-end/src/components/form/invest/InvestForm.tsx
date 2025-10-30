@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Label from "../Label";
 import Input from "../input/InputField";
 import Select from "../Select";
@@ -12,8 +12,9 @@ interface InvestFormProps {
 export default function InvestForm({ onClose }: InvestFormProps) {
   const [amount, setAmount] = useState("");
   const [plan, setPlan] = useState("");
-  const [duration, setDuration] = useState("");
+  const [pin, setPin] = useState("");
   const [showBag, setShowBag] = useState(false);
+  const [showReceipt, setShowReceipt] = useState(false);
   const [selectedInvestment, setSelectedInvestment] = useState<Investment | null>(null);
 
   type Investment = {
@@ -35,22 +36,34 @@ export default function InvestForm({ onClose }: InvestFormProps) {
   const planRewards: Record<string, string> = {
     "Fixed": "Earn 21% per year",
     "Semi-Emergency": "Earn 10% after 90 days",
-    "Philanthropy": "Earn 50 after 15months",
+    "Philanthropy": "Earn 50% after 15 months",
   };
 
-  const durations = [
-    { value: "3", label: "3 months" },
-    { value: "6", label: "6 months" },
-    { value: "12", label: "12 months" },
-  ];
+  const getEndDate = (planType: string) => {
+    const startDate = new Date();
+    switch(planType) {
+      case "Fixed":
+        return new Date(startDate.setFullYear(startDate.getFullYear() + 1));
+      case "Semi-Emergency":
+        return new Date(startDate.setDate(startDate.getDate() + 90));
+      case "Philanthropy":
+        return new Date(startDate.setMonth(startDate.getMonth() + 15));
+      default:
+        return startDate;
+    }
+  };
 
-  const onSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  const isDisabled = !amount || !plan || !pin || pin.length !== 4;
+
+  // Show receipt automatically when all fields are filled
+  useEffect(() => {
+    setShowReceipt(!isDisabled);
+  }, [isDisabled]);
+
+  const onSubmit = () => {
     // TODO: integrate API for investing
     if (onClose) onClose();
   };
-
-  const isDisabled = !amount || !plan || !duration;
 
   const investments: Investment[] = [
     {
@@ -170,7 +183,9 @@ export default function InvestForm({ onClose }: InvestFormProps) {
             </div>
           </div>
         )
-      ) : (
+      ) 
+      
+      : (
         <>
           <div>
             <Label htmlFor="plan">Investment Plan</Label>
@@ -200,23 +215,73 @@ export default function InvestForm({ onClose }: InvestFormProps) {
           </div>
 
           <div>
-            <Label htmlFor="duration">Duration</Label>
-            <Select
-              options={durations}
-              placeholder="Select duration"
-              onChange={setDuration}
+            <Label htmlFor="invest-pin">Enter PIN</Label>
+            <Input
+              id="invest-pin"
+              name="invest-pin"
+              type="password"
+              placeholder="4-digit PIN"
+              value={pin}
+              onChange={(e) => setPin(e.target.value.replace(/\D/g, '').slice(0, 4))}
               className="dark:bg-gray-900"
             />
           </div>
+
+         
 
           <div className="flex items-center justify-end gap-3 pt-2">
             <Button variant="outline" onClick={onClose}>
               Cancel
             </Button>
-            <Button disabled={isDisabled}>
-              Invest Now
+            <Button onClick={onSubmit} disabled={isDisabled}>
+              Confirm Investment
             </Button>
           </div>
+
+          {showReceipt && (
+            <div className="mt-4 rounded-2xl border border-gray-200 p-4 dark:border-gray-800">
+              <div className="mb-3 flex items-center justify-between">
+                <div className="text-base font-semibold text-gray-900 dark:text-white">Investment Receipt</div>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setShowReceipt(false);
+                    if (onClose) onClose();
+                  }}
+                  className="text-sm text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+                >
+                  Close
+                </button>
+              </div>
+
+              <div className="space-y-3">
+                <div className="flex justify-between">
+                  <span className="text-gray-600 dark:text-gray-400">Plan:</span>
+                  <span className="font-medium text-gray-900 dark:text-white">{plan}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-600 dark:text-gray-400">Amount Invested:</span>
+                  <span className="font-medium text-gray-900 dark:text-white">₦{Number(amount).toLocaleString()}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-600 dark:text-gray-400">Expected Return:</span>
+                  <span className="font-medium text-success-600 dark:text-success-500">{planRewards[plan]}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-600 dark:text-gray-400">Start Date:</span>
+                  <span className="font-medium text-gray-900 dark:text-white">{new Date().toLocaleDateString()}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-600 dark:text-gray-400">End Date:</span>
+                  <span className="font-medium text-gray-900 dark:text-white">{getEndDate(plan).toLocaleDateString()}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-600 dark:text-gray-400">Status:</span>
+                  <span className="font-medium text-brand-600 dark:text-brand-500">Active</span>
+                </div>
+              </div>
+            </div>
+          )}
         </>
       )}
     </form>
