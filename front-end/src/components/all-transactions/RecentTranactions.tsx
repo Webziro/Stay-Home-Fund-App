@@ -5,7 +5,29 @@ import {
   TableHeader,
   TableRow,
 } from "../ui/table";
-import Badge from "../ui/badge/Badge";
+
+const StatusIcon = ({ status }: { status: "Delivered" | "Pending" | "Canceled" }) => {
+  return (
+    <div className="flex items-center gap-2">
+      <span className={`flex h-2.5 w-2.5 rounded-full ${
+        status === "Delivered"
+          ? "bg-green-500"
+          : status === "Pending"
+          ? "bg-yellow-500"
+          : "bg-red-500"
+      }`} />
+      <span className={`text-theme-sm ${
+        status === "Delivered"
+          ? "text-green-600 dark:text-green-400"
+          : status === "Pending"
+          ? "text-yellow-600 dark:text-yellow-400"
+          : "text-red-600 dark:text-red-400"
+      }`}>
+        {status}
+      </span>
+    </div>
+  );
+};
 
 // Define the TypeScript interface for the table rows
 interface TransactionDetails {
@@ -28,7 +50,7 @@ interface TransactionDetails {
 const tableData: TransactionDetails[] = [
   {
     ReceieverDetails: "Stanley Amaziro",
-    TransactionType: "Credit",
+    TransactionType: "CR",
     Remarks: "This is a test transaction",
     DebitedFrom: "$2399.00",
     TransactionId: "Laptop",
@@ -40,6 +62,38 @@ const tableData: TransactionDetails[] = [
     TransactionMethod: "Laptop",
     Fee: "0",
     status: "Delivered",
+  },
+
+  {
+    ReceieverDetails: "Stanley Amaziro",
+    TransactionType: "DR",
+    Remarks: "This is a test transaction",
+    DebitedFrom: "$2399.00",
+    TransactionId: "Laptop",
+    TransactionDate: "2025-01-01",
+    SessionId: "1234567890",
+    TransactionStatus: "Success",
+    TransactionAmount: "$2399.00",
+    TransactionCurrency: "USD",
+    TransactionMethod: "Laptop",
+    Fee: "0",
+    status: "Pending",
+  },
+
+  {
+    ReceieverDetails: "Stanley Amaziro",
+    TransactionType: "DR",
+    Remarks: "This is a test transaction",
+    DebitedFrom: "$2399.00",
+    TransactionId: "Laptop",
+    TransactionDate: "2025-01-01",
+    SessionId: "1234567890",
+    TransactionStatus: "Success",
+    TransactionAmount: "$2399.00",
+    TransactionCurrency: "USD",
+    TransactionMethod: "Laptop",
+    Fee: "0",
+    status: "Canceled",
   },
 ];
 
@@ -152,19 +206,8 @@ export default function RecentOrders() {
                 <TableCell className="py-3 text-gray-500 text-theme-sm dark:text-gray-400">
                   {TransactionDetails.TransactionType}
                 </TableCell>
-                <TableCell className="py-3 text-gray-500 text-theme-sm dark:text-gray-400">
-                  <Badge
-                    size="sm"
-                    color={
-                      TransactionDetails.status === "Delivered"
-                        ? "success"
-                        : TransactionDetails.status === "Pending"
-                        ? "warning"
-                        : "error"
-                    }
-                  >
-                    {TransactionDetails.status}
-                  </Badge>
+                <TableCell className="py-3">
+                  <StatusIcon status={TransactionDetails.status} />
                 </TableCell>
               </TableRow>
             ))}
