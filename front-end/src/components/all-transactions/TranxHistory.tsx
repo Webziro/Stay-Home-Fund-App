@@ -65,7 +65,7 @@ const tableData: TransactionDetails[] = [
     status: "Delivered",
   },
   {
-    ReceieverDetails: "Jane Doe",
+    ReceieverDetails: "Obi Wan Kenobi",
     TransactionType: "DR",
     Remarks: "Subscription",
     DebitedFrom: "$25.00",
@@ -80,7 +80,7 @@ const tableData: TransactionDetails[] = [
     status: "Pending",
   },
   {
-    ReceieverDetails: "John Smith",
+    ReceieverDetails: "John Adaobi",
     TransactionType: "DR",
     Remarks: "Refund",
     DebitedFrom: "$100.00",
