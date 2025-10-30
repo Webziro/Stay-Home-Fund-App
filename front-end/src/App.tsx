@@ -4,15 +4,13 @@ import SignUp from "./pages/AuthPages/SignUp";
 import NotFound from "./pages/OtherPage/NotFound";
 import UserProfiles from "./pages/UserProfiles";
 import BasicTables from "./pages/Tables/BasicTables";
+import TranxHistory from "./components/all-transactions/TranxHistory";
 import FormElements from "./pages/Forms/FormElements";
 import Blank from "./pages/Blank";
 import SaveMoney from "./pages/OtherPage/SaveMoney";
 import AppLayout from "./layout/AppLayout";
 import { ScrollToTop } from "./components/common/ScrollToTop";
 import Home from "./pages/Dashboard/Home";
-import { Provider } from "react-redux";
-
-
 export default function App() {
   return (
       <Router>
@@ -32,6 +30,7 @@ export default function App() {
 
             {/* Tables */}
             <Route path="/basic-tables" element={<BasicTables />} />
+            <Route path="/tranx-history" element={<TranxHistory />} />
 
 
           </Route>
