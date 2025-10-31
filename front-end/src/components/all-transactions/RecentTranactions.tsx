@@ -97,7 +97,7 @@ const tableData: TransactionDetails[] = [
     TransactionCurrency: "USD",
     TransactionMethod: "Laptop",
     Fee: "0",
-    status: "Canceled",
+    status: "Delivered",
   },
 
   {
@@ -113,7 +113,7 @@ const tableData: TransactionDetails[] = [
     TransactionCurrency: "USD",
     TransactionMethod: "Laptop",
     Fee: "0",
-    status: "Canceled",
+    status: "Delivered",
   },
 
   {
@@ -148,10 +148,14 @@ export default function RecentOrders() {
     startDate: '',
     endDate: ''
   });
-  const [visibleCount, setVisibleCount] = useState(4);
+  const [visibleCount, setVisibleCount] = useState(3);
 
   const handleLoadMore = () => {
-    setVisibleCount(prev => prev + 4);
+    setVisibleCount(prev => prev + 3);
+  };
+
+  const handleShowLess = () => {
+    setVisibleCount(3);
   };
 
   const handleFilterChange = (key: keyof FilterState, value: string) => {
@@ -291,16 +295,24 @@ export default function RecentOrders() {
             ))}
           </TableBody>
         </Table>
-        {filteredData.length > visibleCount && (
-          <div className="mt-4 flex justify-center">
+        <div className="mt-4 flex justify-center gap-2">
+          {filteredData.length > visibleCount && (
             <button
               onClick={handleLoadMore}
               className="inline-flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-theme-sm font-medium text-gray-700 shadow-theme-xs hover:bg-gray-50 hover:text-gray-800 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-white/[0.03] dark:hover:text-gray-200"
             >
               Load More
             </button>
-          </div>
-        )}
+          )}
+          {visibleCount > 3 && (
+            <button
+              onClick={handleShowLess}
+              className="inline-flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-theme-sm font-medium text-gray-700 shadow-theme-xs hover:bg-gray-50 hover:text-gray-800 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-white/[0.03] dark:hover:text-gray-200"
+            >
+              Show Less
+            </button>
+          )}
+        </div>
       </div>
 
       <Modal isOpen={filterModal.isOpen} onClose={filterModal.closeModal} className="w-full max-w-md">
