@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router";
 import SignIn from "./pages/AuthPages/SignIn";
 import SignUp from "./pages/AuthPages/SignUp";
+import ChangePin from "./pages/AuthPages/ChangePin";
 import NotFound from "./pages/OtherPage/NotFound";
 import UserProfiles from "./pages/UserProfiles";
 import TranxHistory from "./components/all-transactions/TranxHistory";
@@ -22,6 +23,7 @@ export default function App() {
             <Route path="/profile" element={<UserProfiles />} />
             <Route path="/blank" element={<Blank />} />
             <Route path="/save" element={<SaveMoney />} />
+            <Route path="/change-pin" element={<ChangePin />} />
             <Route path="/tranx-history" element={<TranxHistory />} />
           </Route>
 
