@@ -10,8 +10,8 @@ export default function Home() {
   return (
     <>
       <PageMeta
-        title="Stay Home Fund Dashboard | SHF - Grow your money with us!"
-        description="This is Stay Home Fund Dashboard - Grow your money with us!"
+        title="Stay Home Fund Dashboard | SHF - Your Financial Freedom Starts Here!"
+        description="Stay Home Fund Dashboard - Your Financial Freedom Starts Here!"
       />
     
       <div className="mb-4 flex items-center justify-between gap-4">
