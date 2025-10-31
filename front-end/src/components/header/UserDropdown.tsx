@@ -5,6 +5,7 @@ import { Link } from "react-router";
 
 export default function UserDropdown() {
   const [isOpen, setIsOpen] = useState(false);
+  const [copied, setCopied] = useState(false);
 
   function toggleDropdown() {
     setIsOpen(!isOpen);
@@ -13,6 +14,12 @@ export default function UserDropdown() {
   function closeDropdown() {
     setIsOpen(false);
   }
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText("034567890");
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000); // Reset after 2 seconds
+  };
   return (
     <div className="relative">
       <button
@@ -59,6 +66,62 @@ export default function UserDropdown() {
         </div>
 
         <ul className="flex flex-col gap-1 pt-4 pb-3 border-b border-gray-200 dark:border-gray-800">
+          
+           <li>
+            <DropdownItem
+              onItemClick={handleCopy}
+              className="flex items-center justify-between px-3 py-2 font-medium text-gray-700 rounded-lg group text-theme-sm hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-gray-300"
+            >
+              <div className="flex items-center gap-3">
+                <svg
+                  className="fill-gray-500 group-hover:fill-gray-700 dark:fill-gray-400 dark:group-hover:fill-gray-300"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fillRule="evenodd"
+                    clipRule="evenodd"
+                    d="M3 6.75A3.75 3.75 0 016.75 3h10.5A3.75 3.75 0 0121 6.75v10.5A3.75 3.75 0 0117.25 21H6.75A3.75 3.75 0 013 17.25V6.75zM6.75 4.5a2.25 2.25 0 00-2.25 2.25v10.5a2.25 2.25 0 002.25 2.25h10.5a2.25 2.25 0 002.25-2.25V6.75a2.25 2.25 0 00-2.25-2.25H6.75z M7.5 8.25a.75.75 0 000 1.5h9a.75.75 0 000-1.5h-9zm0 3a.75.75 0 000 1.5h9a.75.75 0 000-1.5h-9zm0 3a.75.75 0 000 1.5h5a.75.75 0 000-1.5h-5z"
+                  />
+                </svg>
+                <div>
+                  <div>Bank Account Number</div>
+                                    <div className="text-sm text-gray-500">0345678901</div>
+                </div>
+              </div>
+              <div className="flex items-center gap-2">
+                {copied && (
+                  <span className="text-xs text-green-500 dark:text-green-400">
+                    Copied!
+                  </span>
+                )}
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleCopy();
+                  }}
+                  className="p-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700"
+                >
+                  <svg
+                    className="w-5 h-5 fill-gray-500 group-hover:fill-gray-700 dark:fill-gray-400 dark:group-hover:fill-gray-300"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      clipRule="evenodd"
+                      d="M7.5 3.5A2 2 0 0 0 5.5 5.5V15.5A2 2 0 0 0 7.5 17.5H16.5A2 2 0 0 0 18.5 15.5V5.5A2 2 0 0 0 16.5 3.5H7.5ZM4 5.5A3.5 3.5 0 0 1 7.5 2H16.5A3.5 3.5 0 0 1 20 5.5V15.5A3.5 3.5 0 0 1 16.5 19H7.5A3.5 3.5 0 0 1 4 15.5V5.5ZM8.5 21.5A3.5 3.5 0 0 1 5 18V7.5C5 7.22386 5.22386 7 5.5 7C5.77614 7 6 7.22386 6 7.5V18C6 19.3807 7.11929 20.5 8.5 20.5H17.5C18.8807 20.5 20 19.3807 20 18V7.5C20 7.22386 20.2239 7 20.5 7C20.7761 7 21 7.22386 21 7.5V18A3.5 3.5 0 0 1 17.5 21.5H8.5Z"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </DropdownItem>
+          </li>
+          
           <li>
             <DropdownItem
               onItemClick={closeDropdown}
